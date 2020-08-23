@@ -1,0 +1,19 @@
+<a
+style = "cursor: pointer;"
+[routerLink] ="['/equipos',oEquipo.Id]"
+routerLinkActive = "active" 
+class = "list-group-item clearfix">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ oEquipo.Descripcion }}</h4>
+        <p class="list-group-item-text">{{oEquipo.Proveedor}}</p>
+    </div>
+    <Span class="pull-right">
+        <img
+          [src]="oEquipo.Foto"
+          alt="{{ oEquipo.Descripcion }}"
+          class="img-responsive"
+          style="max-height: 50px;">
+    </Span>
+    <br/>
+</a>
+

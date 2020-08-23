@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form (ngSubmit)="onAltaComponente(fForm)" #fForm="ngForm">
+            <div class="row">
+                <div class="col-sm-5 form-group">
+                    <label for="Componente">Componente</label>
+                    <input type="text"
+                           id="Componente"
+                           class="form-control"
+                           name="iComponente" ngModel
+                           required>
+                </div>
+                <div class="col-sm-2 form-group">
+                    <label for="Cantidad">Cantidad</label>
+                    <input type="number"
+                           id="Cantidad"
+                           class="form-control"
+                           name="iCantidad" ngModel
+                           required
+                           pattern="^[1-9]+[0-9]*$">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button 
+                      class="btn btn-primary" 
+                      type="submit" 
+                      [disabled]="!fForm.valid">
+                      {{ bEditandoComponente? 'Actualizar' : 'Agregar' }}
+                    </button>
+                    <button 
+                      class="btn btn-danger" 
+                      type="button"
+                      (click)="onBajaComponente()">Borrar</button>
+                    <button 
+                      class="btn btn-primary" 
+                      type="button"
+                      (click)="onLimpiarForm()"
+                      *ngIf = "!bEditandoComponente">
+                      Limpiar
+                    </button>
+                </div>
+            </div>
+    </form>
+    </div>
+</div>

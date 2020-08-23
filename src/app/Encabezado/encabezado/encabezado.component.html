@@ -1,0 +1,70 @@
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">Listado de equipos</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive = "active"><a routerLink = "/auth" *ngIf="!isLogeado"> Ingresar</a></li>
+                <li routerLinkActive = "active"><a routerLink = "/equipos" *ngIf="isLogeado"> Equipos</a></li>
+                <li routerLinkActive = "active"><a routerLink = "/pedidos"> Lista de pedido</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" >
+                <li><a style="cursor: pointer;" *ngIf="isLogeado">Salir</a></li>
+                <li class="dropdown" appActivarMenu>
+                    <a style="cursor: pointer;" class="dropdoun-toggle " role = "button" *ngIf="isLogeado"> Gestionar <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a style="cursor: pointer;" (click)="onGuardarEquipo()"> Guardar</a></li>
+                        <li><a style="cursor: pointer;" (click)="onRecuperarEquipos()"> Obtener</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>      
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">Gestión de Equipos</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Archivo
+                    </a>
+                    <div class="dropdown-menu collapse"   aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Guardar</a>
+                      <a class="dropdown-item" href="#">Buscar</a>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" (click)="onSelecciona('Equipos')">Equipos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" (click)="onSelecciona('Pedidos')">Pedidos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+
+
+
+
+

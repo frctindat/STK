@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-xs-12">
+        <img src="{{ oEquipoDetalle.Foto }}" alt="" class="img-responsive">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h1>Detalle de equipo</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="btn-group" appActivarMenu>
+            <button 
+              type="button" 
+              class="btn btn-primary dropdown-toggle">
+              Gestionar 
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" >
+                <li><a (click)="onAgregarComponentesALista()" style="cursor: pointer;">Agregar componentes</a></li>
+                <li><a (click) = "onEditar()" style="cursor: pointer;">Editar</a></li>
+                <li><a (click) = "onBorrarEquipo()" style="cursor: pointer;">Eliminar</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        {{ oEquipoDetalle.Categ }} / {{ oEquipoDetalle.Descripcion }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item"
+             *ngFor="let Componente of oEquipoDetalle.Componentes">
+             {{Componente.detalle}}: {{Componente.cantidad}}
+            </li>
+        </ul>
+        
+    </div>
+</div>

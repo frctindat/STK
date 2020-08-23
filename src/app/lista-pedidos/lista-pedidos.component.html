@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-sm-10">
+        <app-lista-pedidos-edicion> </app-lista-pedidos-edicion>
+        <hr>
+        <ul class="list-group">
+            <a class="list-group-item" 
+               style="cursor: pointer"
+               *ngFor="let componente of componentes, let i = index"
+               (click)="onEditarComponente(i)">
+               {{ componente.detalle }} ({{ componente.cantidad}})
+            </a>
+        </ul>
+    </div>
+</div>
