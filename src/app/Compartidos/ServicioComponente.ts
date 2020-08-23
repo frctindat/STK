@@ -1,4 +1,4 @@
-import { componente } from './componente.model'; //
+import { componente } from './componente.model'; // cambbiiiaaa
 import { Subject } from 'rxjs';
 
 
