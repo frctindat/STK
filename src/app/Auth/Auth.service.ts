@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, Subject, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 export interface RespuestaAuth {
        idToken: string;
@@ -17,15 +18,15 @@ export interface RespuestaAuth {
 
 export class AuthService {
 
-    /*Genera un subject igual que el común pero a diferencia de éste permite suscribirse obteniendo 
+    /*Genera un subject igual que el común pero a diferencia de éste permite suscribirse obteniendo
       los valores padados. Esto es importante con el usuario porque si fuese un subject solo emite valor
       cuando se produce el login. Si luego necesito usar el token en un momento posterior, por ejemplo
-      para buscar los equipos ya para ese entonces no tendría el usuario porque en ese momento no estaba 
+      para buscar los equipos ya para ese entonces no tendría el usuario porque en ese momento no estaba
       suscrito. En cambio con BehaviorSubject puedo rescatar el valor que tenía el usuario al momento de ser
-      obtenido*/ 
-      usuario = new BehaviorSubject<User>(null); 
+      obtenido*/
+      usuario = new BehaviorSubject<User>(null);
 
-    constructor(private http: HttpClient){};
+    constructor(private http: HttpClient, private router: Router){};
 
     Registro(email: string, password: string) {
         return this.http.post<RespuestaAuth>(
@@ -50,7 +51,7 @@ export class AuthService {
             }
         ).pipe(catchError(this.HandlerError), tap(RespHttp => {
             this.AuthHandler(RespHttp.idToken, RespHttp.email, +RespHttp.expiresIn, RespHttp.localId)
-        }));        
+        }));
     }
 
     private HandlerError (RespuestaError: HttpErrorResponse) {
@@ -63,18 +64,23 @@ export class AuthService {
             case 'EMAIL_EXISTS':
                 MensajeError = 'El email ya existe';
                 break;
-            
-            case 'EMAIL_NOT_FOUND':     
+
+            case 'EMAIL_NOT_FOUND':
                 MensajeError = 'La cuenta no está registrada';
                 break;
 
-                case 'INVALID_PASSWORD':     
+                case 'INVALID_PASSWORD':
                 MensajeError = 'La contraseña no es correcta';
                 break;
         }
 
         return throwError(MensajeError); // throwError crea un observable con el mensaje de error que luego consumirá el auth component
 
+    }
+
+    Salir() {
+      this.usuario.next(null);
+      this.router.navigate(['/auth'])
     }
 
     private AuthHandler(idtoken: string, email: string, expiresIn: number, localId: string ) {

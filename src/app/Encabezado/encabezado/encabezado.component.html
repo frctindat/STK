@@ -11,7 +11,7 @@
                 <li routerLinkActive = "active"><a routerLink = "/pedidos"> Lista de pedido</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" >
-                <li><a style="cursor: pointer;" *ngIf="isLogeado">Salir</a></li>
+                <li><a style="cursor: pointer;" *ngIf="isLogeado" (click)="onSalir()">Salir</a></li>
                 <li class="dropdown" appActivarMenu>
                     <a style="cursor: pointer;" class="dropdoun-toggle " role = "button" *ngIf="isLogeado"> Gestionar <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -21,7 +21,7 @@
                 </li>
             </ul>
 
-        </div>      
+        </div>
     </div>
 </nav>
 
@@ -33,11 +33,11 @@
 
 
 
-<!-- 
+<!--
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        
+
         <div class="navbar-header">
             <a href="#" class="navbar-brand">Gestión de Equipos</a>
         </div>

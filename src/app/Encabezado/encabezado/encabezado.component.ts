@@ -8,14 +8,14 @@ import { Subscribable, Subscriber, Subscription } from 'rxjs';
   templateUrl: './encabezado.component.html',
   styleUrls: ['./encabezado.component.css']
 })
-export class EncabezadoComponent implements OnInit, OnDestroy { 
+export class EncabezadoComponent implements OnInit, OnDestroy {
 
   isLogeado: boolean = false;
 
   constructor(private ServicioHttp: ServicioHTTP, private authService: AuthService) {}
-  
+
   private subUsuario: Subscription;
-  
+
   ngOnInit() {
     this.subUsuario = this.authService.usuario.subscribe(llegaUser => {
       this.isLogeado = !!llegaUser;
@@ -24,7 +24,7 @@ export class EncabezadoComponent implements OnInit, OnDestroy {
 ;
 
   onGuardarEquipo() {
-    this.ServicioHttp.GuardarEquipos(); 
+    this.ServicioHttp.GuardarEquipos();
   }
 
   onRecuperarEquipos() {
@@ -33,6 +33,10 @@ export class EncabezadoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subUsuario.unsubscribe();
+  }
+
+  onSalir() {
+    this.authService.Salir();
   }
  };
 
