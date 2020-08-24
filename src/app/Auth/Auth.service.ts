@@ -87,6 +87,28 @@ export class AuthService {
         const FechaExpira = new Date(new Date().getTime() + expiresIn * 1000);
         const user = new User(idtoken, email, FechaExpira, localId);
         this.usuario.next(user);
+        localStorage.setItem('userData', JSON.stringify(user)); // Guardo en disco el objeto con todos los datos del usuario convertido en un JSON, es decir una cadena de texto.
+    }
+
+    AutoLogeo() {
+      const UsuarioRecuperado: { // Creo objeto constante con mismas propiedades que el objeto del usuario y le agrego los datos obtenidos del guardado local del usuario.
+        _token: string,
+        email: string,
+        _ExpirationDate: string,
+        localId: string
+      } = JSON.parse(localStorage.getItem('userData'));
+
+      if (!UsuarioRecuperado) {
+        return;
+      }
+
+      const usuarioRearmado = new User(UsuarioRecuperado._token, // Instancio un objeto usuario y le pego las propiedades obtenidas del guardado local.
+                                       UsuarioRecuperado.email,
+                                       new Date(UsuarioRecuperado._ExpirationDate),
+                                       UsuarioRecuperado.localId)
+      if (usuarioRearmado.Token) // Verifico con el getter que está en el modelo del objeto user si todavía el token es válido.
+        this.usuario.next(usuarioRearmado); // Publico el usuario obtenido.
+
     }
 
 }

@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './Auth/Auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'prueba3';
-  cSeleccionado = 'Equipos';
+export class AppComponent implements OnInit {
 
-  onActivar(pcSeleccionado: string) {
-    this.cSeleccionado = pcSeleccionado;
+  constructor(private authService: AuthService) {};
+
+  ngOnInit() {
+    this.authService.AutoLogeo();
   }
+
 }
