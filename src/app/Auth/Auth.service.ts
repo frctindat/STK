@@ -24,9 +24,10 @@ export class AuthService {
       para buscar los equipos ya para ese entonces no tendría el usuario porque en ese momento no estaba
       suscrito. En cambio con BehaviorSubject puedo rescatar el valor que tenía el usuario al momento de ser
       obtenido*/
-      usuario = new BehaviorSubject<User>(null);
+    usuario = new BehaviorSubject<User>(null);
 
     constructor(private http: HttpClient, private router: Router){};
+    private handlerTimerToken: any;
 
     Registro(email: string, password: string) {
         return this.http.post<RespuestaAuth>(
@@ -81,12 +82,26 @@ export class AuthService {
     Salir() {
       this.usuario.next(null);
       this.router.navigate(['/auth'])
+      localStorage.removeItem('userData');
+
+      if (this.handlerTimerToken) {
+        clearTimeout(this.handlerTimerToken);
+      }
+
+      this.handlerTimerToken = null;
+    }
+
+
+    AutoSalir(LeQuedaAlToken: number ) {
+      console.log('Le queda al token en milisegundos: ', LeQuedaAlToken );
+      this.handlerTimerToken = setTimeout(() => {this.Salir()}, LeQuedaAlToken);
     }
 
     private AuthHandler(idtoken: string, email: string, expiresIn: number, localId: string ) {
         const FechaExpira = new Date(new Date().getTime() + expiresIn * 1000);
         const user = new User(idtoken, email, FechaExpira, localId);
         this.usuario.next(user);
+        this.AutoSalir(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user)); // Guardo en disco el objeto con todos los datos del usuario convertido en un JSON, es decir una cadena de texto.
     }
 
@@ -108,6 +123,9 @@ export class AuthService {
                                        UsuarioRecuperado.localId)
       if (usuarioRearmado.Token) // Verifico con el getter que está en el modelo del objeto user si todavía el token es válido.
         this.usuario.next(usuarioRearmado); // Publico el usuario obtenido.
+
+        this.AutoSalir(new Date(UsuarioRecuperado._ExpirationDate).getTime() -
+                       new Date().getTime());
 
     }
 
