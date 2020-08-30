@@ -25,7 +25,7 @@ export class AuthComponent implements OnInit {
         this.FormAuth = new FormGroup({
                             Email: new FormControl(Email, Validators.required),
                             Password: new FormControl(Password, Validators.minLength(6))
-                
+
         })
     }
 
@@ -66,12 +66,16 @@ export class AuthComponent implements OnInit {
             MensajeError => {
                 console.log('Mensaje procesado por el pipe: ', MensajeError);
                 this.cError = MensajeError;
-                this.bIsLoading = false;                                      
+                this.bIsLoading = false;
             }
         )
 
         this.FormAuth.reset();
 
+    }
+
+    onFinMensaje() {
+      this.cError = null;
     }
 
 }

@@ -9,7 +9,7 @@ export class AlertaComponent {
   @Input() Mensaje: string;
   @Output() cierra = new EventEmitter<void>();
 
-  onClose() {
+  onCierra() {
     this.cierra.emit();
   }
 }

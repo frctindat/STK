@@ -1,23 +1,26 @@
 <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <div class="alert alert-danger" *ngIf="cError">
-            <p>{{ cError }}</p> 
-         </div>
+        <!-- <div class="alert alert-danger" *ngIf="cError">
+            <p>{{ cError }}</p>
+         </div> -->
+
+         <app-alerta [Mensaje]="cError" (cierra)="onFinMensaje()" *ngIf="cError"></app-alerta>
+
          <div class="div" stype="text-align: centers" *ngIf="bIsLoading">
             <app-spinner-carga></app-spinner-carga>
         </div>
         <form [formGroup]="FormAuth" (ngSubmit)="onSubmit()" *ngIf="!bIsLoading">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" 
-                    id=email 
+                <input type="email"
+                    id=email
                     class="form-control"
                     formControlName = "Email"/>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password"
-                    id=password 
+                    id=password
                     class="form-control"
                     formControlName = "Password"/>
             </div>
@@ -26,8 +29,8 @@
                     type="submit"
                     [disabled]="!FormAuth.valid">
                     {{bModoLogin? 'Ingresar' : 'Registrarse'}}
-                </button> / 
-                <button class="btn btn-primary" 
+                </button> /
+                <button class="btn btn-primary"
                     (click) = 'onSwLogin()'
                     type="button">
                     {{bModoLogin? 'Modo Registro' : 'Modo Login'}}
