@@ -5,7 +5,6 @@ import { AuthComponent } from './Auth/auth.component';
 
 const vRutas: Routes = [
     {path: '', redirectTo: '/equipos', pathMatch: 'full'},
-    {path: 'pedidos', component: ListaPedidosComponent},
     {path: 'auth', component: AuthComponent}
 ]
 
