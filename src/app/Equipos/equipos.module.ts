@@ -6,9 +6,10 @@ import { SinEquipoComponent } from './sin-equipo/sin-equipo.component';
 import { EquipoEditComponent } from './equipo-edit/equipo-edit.component';
 import { EquiposItemComponent } from './equipos-lista/equipos-item/equipos-item.component';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EquiposRuteoModule } from './equipos-ruteo.module';
+import { ComponentesCompartidosModule } from '../Compartidos/Componentes-Compartidos.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,11 @@ import { EquiposRuteoModule } from './equipos-ruteo.module';
     EquipoEditComponent,
     EquiposItemComponent,
   ],
-  imports: [RouterModule, CommonModule, ReactiveFormsModule, EquiposRuteoModule],
+  imports: [RouterModule,
+            ComponentesCompartidosModule,
+            ReactiveFormsModule,
+            EquiposRuteoModule
+           ],
 
   // exports: [                 No me hace falta exportar los componentes porque ya los uso desde EquiposRuteoModule
   //   EquiposComponent,
