@@ -4,15 +4,13 @@ import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './Encabezado/encabezado/encabezado.component';
 import { PartesComponent } from './Equipos/Partes/partes/partes.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ServicioComponente } from './Compartidos/ServicioComponente';
 import { AppRuteoModule } from './app-ruteo.module';
-import { ServicioEquipos } from './Equipos/ServicioEquipos';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './Auth/auth.component';
-import { AuthInterceptorService } from './Auth/auth-interceptor-service';
+import { HttpClientModule } from '@angular/common/http';
 import { EquipoModule } from './Equipos/equipos.module';
 import { ListaPedidosModule } from './lista-pedidos/lista-pedidos.module';
 import { ComponentesCompartidosModule } from './Compartidos/Componentes-Compartidos.module';
+import { CentralModule } from './central.module';
 
 @NgModule({
   declarations: [
@@ -29,9 +27,10 @@ import { ComponentesCompartidosModule } from './Compartidos/Componentes-Comparti
     HttpClientModule,
     EquipoModule,
     ListaPedidosModule,
-    ComponentesCompartidosModule
+    ComponentesCompartidosModule,
+    CentralModule
   ],
-  providers: [ServicioComponente, ServicioEquipos, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
