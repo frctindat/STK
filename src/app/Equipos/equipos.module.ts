@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EquiposRuteoModule } from './equipos-ruteo.module';
 import { ComponentesCompartidosModule } from '../Compartidos/Componentes-Compartidos.module';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
