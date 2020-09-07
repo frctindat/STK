@@ -5,7 +5,6 @@ import { EncabezadoComponent } from './Encabezado/encabezado/encabezado.componen
 import { PartesComponent } from './Equipos/Partes/partes/partes.component';
 import { AppRuteoModule } from './app-ruteo.module';
 import { HttpClientModule } from '@angular/common/http';
-import { EquipoModule } from './Equipos/equipos.module';
 import { ListaPedidosModule } from './lista-pedidos/lista-pedidos.module';
 import { ComponentesCompartidosModule } from './Compartidos/Componentes-Compartidos.module';
 import { CentralModule } from './central.module';
@@ -21,7 +20,7 @@ import { AuthModule } from './Auth/auth.module';
     BrowserModule,
     AppRuteoModule,
     HttpClientModule,
-    EquipoModule,
+    //EquipoModule, Ya no lo cargo acá porque en el app-ruteo.module establecí que se cargue como LazyLanding
     ListaPedidosModule,
     ComponentesCompartidosModule,
     CentralModule,
